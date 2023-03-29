@@ -1,0 +1,52 @@
+{% extends "blogservice/base.html" %}
+{% block content %}
+<h1>{{ post.description }}</h1>
+<p>{{ post.text }}</p>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="hidden" name="post_id"  value="{{ post.id }}">
+  <button type="submit">Add Comment</button>
+</form>
+
+{% for comment in comments %}
+  {{comment.text}}
+  {{comment.author_id}}
+{% endfor %}
+<span class="material-symbols-outlined like" onclick="querySomething()">favorite</span>
+<style>
+    h1{
+        font-family: 'Oswald', sans-serif;
+            text-align: center;
+    }
+
+    p{
+        font-family: 'Oswald', sans-serif;
+            font-weight: 400;
+            text-align: center;
+    }
+    .like{
+        cursor: pointer;
+        user-select: none;
+    }
+
+</style>
+
+<script type="text/javascript">
+    function querySomething(){
+        //const load_like = (post, postLikes, likePost, current_user) => {
+    const csrftoken = getCookie('csrftoken');
+    fetch(`/like`, {
+        method: 'POST',
+        body:228,
+        headers: { "X-CSRFToken": csrftoken }
+    })
+        .then(response => response.json())
+        .then(data => {
+            display_likes(data, postLikes, likePost, current_user)
+        })
+}
+
+</script>
+
+{% endblock content%}

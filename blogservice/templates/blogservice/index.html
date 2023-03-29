@@ -1,0 +1,122 @@
+{% extends "blogservice/base.html" %}
+
+
+{% block title %}Blog{% endblock title%}
+
+{% block content %}
+    <div class="name"><h1>MaFin blog</h1></div>
+    {% for post in posts %}
+    <div class="post">
+        <h2 class="des">{{post.description}}</h2>
+        <p class="text">{{post.text}}</p>
+        
+        <div class="post-btns">
+            <div class="spacer"></div>
+            <div class="btn">
+                <a href="{% url 'post' post.id %}">Читать пост</a>
+            </div>
+            <div class="bottom-icons">
+                <span class="material-symbols-outlined like">favorite</span>
+                <span class="likes-amount">{{post.likes}}</span>
+                <span class="material-symbols-outlined views">visibility</span>
+                <span class="views-amount">{{post.views}}</span>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+    <style>
+
+        .post-btns>*{
+            width: 33%  !important;
+        }
+
+            a{
+            color: black;
+            text-decoration: none; /* no underline */
+        }
+            .post {
+            width: 600px;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid rgb(104, 197, 96);
+            border-radius: 25px;
+            box-shadow: rgb(68, 151, 60);
+            margin-bottom: 30px;
+            word-wrap: break-word;
+        }
+
+        .des{
+            font-family: 'Oswald', sans-serif;
+            font-weight: 400;
+            text-align: center;
+        }
+        
+        .name{
+            font-family: 'Oswald', sans-serif;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .text{
+            font-family: 'Oswald', sans-serif;
+            font-weight: 200;
+            text-align: center;
+        }
+
+        .like:hover{
+            color: red;
+            transition: .5s ease-in-out;
+        }
+
+        .views:hover{
+            color: aqua;
+            transition: .5s ease-in-out;
+        }
+
+        .post-btns{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn{
+            border: 2px solid rgb(104, 197, 96);
+            border-radius: 3px;
+            width: 155px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 0;
+            border-radius: 15px 15px 0 0 ;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 400;
+        }
+        .spacer{
+            width: 122.33px;
+        }
+        .likes-amount{
+            font-size: 15px;
+            margin-right: 10px;
+
+        }
+        .bottom-icons{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 400;
+        }
+        .views-amount{
+            margin-right: 10px;
+            font-size: 15px;   
+        }
+        .views{
+            margin-left: 5px;
+        }
+        </style>
+{% endblock content%}
+{% block footer %}копиратийт мафин инкорпорейтед млрд лет до н.э - 2022{% endblock footer%}
+
+
